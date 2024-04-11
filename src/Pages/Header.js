@@ -11,6 +11,7 @@ import { IoChevronDown } from "react-icons/io5";
 import icon from "../Asserts/iCloth-Logo_Site_133x.png";
 import { IoMdArrowDropright } from "react-icons/io";
 import { IoChevronUp } from "react-icons/io5";
+import { FaBars } from "react-icons/fa";
 const Header = () => {
   const [show, setShow] = useState(false);
   const [uses, setUses] = useState(false);
@@ -45,16 +46,16 @@ const Header = () => {
     setProducts(false);
   };
   return (
-    <header className="h-[200px]  w-full ">
-      <main className=" mx-auto h-full bg-white">
-        <div className="h-[50px] w-full bg-[#009ad4]">
-          <div className="max-w-[1605px] mx-auto h-full flex justify-between items-center">
+    <header className="h-auto md:h-[200px] lg:h-[200px] xl:h-[200px]  w-full ">
+      <main className=" mx-auto h-full bg-white ">
+        <div className="h-[50px] w-full bg-[#009ad4] ">
+          <div className="max-w-[1605px] mx-auto h-full flex justify-center sm:justify-center md:justify-between lg:justify-between xl:justify-between items-center">
             <div
-              className=" font-bold flex items-center text-white relative pl-10 text-sm"
+              className=" font-bold flex items-center text-white relative pl-10 text-sm     "
               onMouseEnter={hovertoshow}
               onMouseLeave={hovertohide}
             >
-              <span className="flex items-center gap-1 mr-2 ">
+              <span className="flex items-center gap-1 mr-2  ">
                 <Flag countryCode={"US"} className="w-4 h-4" />
                 <Flagfr countryCode={"FR"} className="w-4 h-4" />
                 <Flagsp countryCode={"SP"} className="w-4 h-4" />
@@ -83,10 +84,11 @@ const Header = () => {
                 ""
               )}
             </div>
-            <div className="text-white font-bold text-sm">
+            <div class="text-white font-bold text-sm  hidden sm:hidden md:block lg:block xl:block">
               SIGN UP FOR OUR NEWSLETTER & RECEIVE 10% OFF YOUR FIRST ORDER
             </div>
-            <div className="text-white font-bold flex items-center gap-3 pr-10 text-sm">
+
+            <div className="text-white  font-bold flex items-center gap-3 pr-10 text-sm hidden   sm:hidden md:block lg:block xl:block">
               CONNECT WITH US :{" "}
               <a
                 href="https://www.facebook.com/iclothcleaningwipes"
@@ -105,21 +107,47 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="h-[90px] w-full   bg-white shadow-black drop-shadow ">
-          <div className="max-w-[1605px] h-full mx-auto flex justify-around   items-center  ">
+        {/* Start  mobile devices */}
+        <div className="h-[60px] flex  sm:flex items-center justify-between md:hidden lg:hidden xl:hidden px-10  ">
+          <div className=" flex items-center">
+            <FaBars className="text-[#009ad4] " size={30} />
+            <a
+              href="https://icloth.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={icon}
+                alt="icon"
+                className="w-auto h-[50px] object-cover pl-8"
+              />
+            </a>
+          </div>
+
+          <div className="">
+            <FaShoppingCart className="text-[#009ad4]" size={30} />
+          </div>
+        </div>
+        {/* End  mobile devices */}
+        <div className="h-auto md:h-[90px] w-full   bg-white shadow-black drop-shadow ">
+          <div className="max-w-[1605px] h-full   flex justify-evenly   items-center  ">
             <div className=" ">
               <a
                 href="https://icloth.io/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src={icon} alt="icon" className="" />
+                <img
+                  src={icon}
+                  alt="icon"
+                  className="object-fill hidden sm:hidden md:block lg:block xl:block  "
+                />
               </a>
             </div>
-            <div className="flex items-center ">
+            <div className="flex items-start  w-full sm:w-full  md:w-[45%] lg:w-[45%] xl:w-[45%] ">
               <input
                 type="text"
-                className="pr-[400px] pl-2 py-2 border rounded-l-md"
+                className="   pl-2 py-2 border rounded-l-md w-full"
                 placeholder="Search..."
                 alt="search"
               />
@@ -127,7 +155,7 @@ const Header = () => {
                 <FaSearch className="text-white text-sm " />
               </button>
             </div>
-            <div className="flex items-center   ">
+            <div className="hidden items-center   sm:hidden md:flex lg:flex xl:flex  ">
               <button className=" border-[#009ad4] border-2  text-[#009ad4] px-3 py-1 rounded-lg text-xl flex items-center ">
                 <a
                   href="https://icloth.io/cart"
@@ -151,7 +179,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-center items-center h-[60px] bg-white  shadow-xl  shadow-black ">
+        <div className="flex justify-center items-center h-[60px] bg-white  shadow-xl  shadow-black hidden sm:hidden md:block lg:block xl:block ">
           <ul className="flex justify-center items-center  gap-5 font-semibold  text-[16px] text-gray-700 ">
             <li
               className="cursor-pointer flex items-center gap-1 relative h-[60px] "
