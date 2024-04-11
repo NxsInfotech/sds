@@ -12,16 +12,31 @@ import icon from "../Asserts/iCloth-Logo_Site_133x.png";
 import { IoMdArrowDropright } from "react-icons/io";
 import { IoChevronUp } from "react-icons/io5";
 import { FaBars } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
 const Header = () => {
   const [show, setShow] = useState(false);
   const [uses, setUses] = useState(false);
   const [products, setProducts] = useState(false);
   const [activeSubMenu, setActiveSubMenu] = useState(null);
+  const [mobiledropdown, setMobiledropdown] = useState(false);
+  const [mobileuses, setMobileuses] = useState(false);
+  const [mobilewhatuses, setMobilwhateuses] = useState(false);
+  const [mobiledropdownwhatwhere, setMobiledropdownwhatwhere] = useState(false);
 
+  //mobile
+  const mobileusesfunction = () => {
+    setMobileuses(!mobileuses);
+  };
+  const mobilewhatusesfunction = () => {
+    setMobilwhateuses(!mobilewhatuses);
+  };
+  const mobiledropdownwhatwherefunction = () => {
+    setMobiledropdownwhatwhere(!mobiledropdownwhatwhere);
+  };
+  //desktop
   const handleMouseEnter = (subMenuIndex) => {
     setActiveSubMenu(subMenuIndex);
   };
-  const isactive = false;
 
   const handleMouseLeave = () => {
     setActiveSubMenu(null);
@@ -108,29 +123,168 @@ const Header = () => {
           </div>
         </div>
         {/* Start  mobile devices */}
-        <div className="h-[60px] flex  sm:flex items-center justify-between md:hidden lg:hidden xl:hidden px-10  ">
-          <div className=" flex items-center">
-            <FaBars className="text-[#009ad4] " size={30} />
-            <a
-              href="https://icloth.io/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={icon}
-                alt="icon"
-                className="w-auto h-[50px] object-cover pl-8"
-              />
-            </a>
-          </div>
+        <div className="h-auto  ">
+          <div className="flex  sm:flex items-center justify-between md:hidden lg:hidden xl:hidden px-5 ">
+            <div className=" flex items-center">
+              {mobiledropdown ? (
+                <RxCross2
+                  className="text-[#009ad4] "
+                  size={30}
+                  onClick={() => {
+                    setMobiledropdown(false);
+                  }}
+                />
+              ) : (
+                <FaBars
+                  className="text-[#009ad4] "
+                  size={30}
+                  onClick={() => {
+                    setMobiledropdown(true);
+                  }}
+                />
+              )}
 
-          <div className="">
-            <FaShoppingCart className="text-[#009ad4]" size={30} />
+              <a
+                href="https://icloth.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={icon}
+                  alt="icon"
+                  className="w-auto h-[50px] object-cover pl-8"
+                />
+              </a>
+            </div>
+
+            <div className="">
+              <FaShoppingCart className="text-[#009ad4]" size={30} />
+            </div>
           </div>
+          {mobiledropdown && (
+            <div className="">
+              <ul className="w-full ">
+                <div className=" p-3 pl-4">
+                  <p className="flex items-center ">
+                    USES{" "}
+                    <span
+                      className="w-[90%]  flex justify-end "
+                      onClick={mobiledropdownwhatwherefunction}
+                    >
+                      {" "}
+                      {mobiledropdownwhatwhere ? (
+                        <IoChevronUp size={20} />
+                      ) : (
+                        <IoChevronDown size={20} />
+                      )}{" "}
+                    </span>
+                  </p>
+                  {mobiledropdownwhatwhere && (
+                    <>
+                      <div className="p-3 pl-4 ">
+                        <p className="flex items-center   ">
+                          -WHAT{" "}
+                          <span
+                            className="w-[90%]  flex justify-end "
+                            onClick={mobilewhatusesfunction}
+                          >
+                            {" "}
+                            {mobilewhatuses ? (
+                              <IoChevronUp size={20} />
+                            ) : (
+                              <IoChevronDown size={20} />
+                            )}{" "}
+                          </span>
+                        </p>
+                        {mobilewhatuses && (
+                          <ul>
+                            <li className="hover:bg-gray-400 p-3 pl-4">
+                              LARGE NON-POROUS SURFACES
+                            </li>
+                            <li className="hover:bg-gray-400 p-3 pl-4">
+                              PERSONAL DEVICES UP TO 32*
+                            </li>
+                            <li className="hover:bg-gray-400 p-3 pl-4">
+                              LARGE SENSITIVE SURFACES
+                            </li>
+                            <li className="hover:bg-gray-400 p-3 pl-4">
+                              SENSITIVE ELECTRONICS UP TO 32*
+                            </li>
+                            <li className="hover:bg-gray-400 p-3 pl-4">
+                              EYEWEAR AND CAMERA LENSES
+                            </li>
+                          </ul>
+                        )}
+                      </div>
+                      <div className=" p-3 pl-4  ">
+                        <p className="flex items-center   ">
+                          -WHERE{" "}
+                          <span
+                            className="w-[90%]  flex justify-end "
+                            onClick={mobileusesfunction}
+                          >
+                            {" "}
+                            {mobileuses ? (
+                              <IoChevronUp size={20} />
+                            ) : (
+                              <IoChevronDown size={20} />
+                            )}{" "}
+                          </span>
+                        </p>
+                        {mobileuses && (
+                          <ul>
+                            <li className="hover:bg-gray-400 p-3 pl-4">
+                              AT HOME
+                            </li>
+                            <li className="hover:bg-gray-400 p-3 pl-4">
+                              AT WORK
+                            </li>
+                            <li className="hover:bg-gray-400 p-3 pl-4">
+                              ON-THE-GO
+                            </li>
+                            <li className="hover:bg-gray-400 p-3 pl-4">
+                              IN EDUCATION
+                            </li>
+                            <li className="hover:bg-gray-400 p-3 pl-4">
+                              IN AVIATION
+                            </li>
+                            <li className="hover:bg-gray-400 p-3 pl-4">
+                              IN HOSPITALITY
+                            </li>
+                            <li className="hover:bg-gray-400 p-3 pl-4">
+                              DISCOVER MORE
+                            </li>
+                          </ul>
+                        )}
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                <li className="hover:bg-gray-400 p-3 pl-4">PRODUCTS</li>
+                <li className="hover:bg-gray-400 p-3 pl-4">
+                  70% ISOPROPYL ALCOHOL FORMULA
+                </li>
+                <li className="hover:bg-gray-400 p-3 pl-4">XL WIPES</li>
+                <li className="hover:bg-gray-400 p-3 pl-4">LARGE WIPES</li>
+                <li className="hover:bg-gray-400 p-3 pl-4">
+                  PREMIUM SCREEN CLEANING FORMULA
+                </li>
+                <li className="hover:bg-gray-400 p-3 pl-4">XL WIPES</li>
+                <li className="hover:bg-gray-400 p-3 pl-4">LARGE WIPES</li>
+                <li className="hover:bg-gray-400 p-3 pl-4">SMALL WIPES</li>
+                <li className="hover:bg-gray-400 p-3 pl-4">DISCOVER</li>
+                <li className="hover:bg-gray-400 p-3 pl-4">OUR STORY</li>
+                <li className="hover:bg-gray-400 p-3 pl-4">FAQ</li>
+                <li className="hover:bg-gray-400 p-3 pl-4">OUR BLOG</li>
+                <li className="hover:bg-gray-400 p-3 pl-4">CONTACT US</li>
+              </ul>
+            </div>
+          )}
         </div>
         {/* End  mobile devices */}
-        <div className="h-auto md:h-[90px] w-full   bg-white shadow-black drop-shadow ">
-          <div className="max-w-[1605px] h-full   flex justify-evenly   items-center  ">
+        <div className="h-auto  md:h-[90px] w-full   bg-white shadow-black drop-shadow ">
+          <div className="max-w-[1605px] h-full mx-auto  flex justify-evenly   items-center  ">
             <div className=" ">
               <a
                 href="https://icloth.io/"
