@@ -18,10 +18,15 @@ const Header = () => {
   const [uses, setUses] = useState(false);
   const [products, setProducts] = useState(false);
   const [activeSubMenu, setActiveSubMenu] = useState(null);
+  //mobile states
   const [mobiledropdown, setMobiledropdown] = useState(false);
   const [mobileuses, setMobileuses] = useState(false);
   const [mobilewhatuses, setMobilwhateuses] = useState(false);
   const [mobiledropdownwhatwhere, setMobiledropdownwhatwhere] = useState(false);
+  //mobile states of wipes
+  const [mobilewipes, setMobilewipes] = useState(false);
+  const [mobilewipesalcohol, setMobilewipesalcohol] = useState(false);
+  const [mobilewipescleaning, setMobilewipescleaning] = useState(false);
 
   //mobile
   const mobileusesfunction = () => {
@@ -32,6 +37,16 @@ const Header = () => {
   };
   const mobiledropdownwhatwherefunction = () => {
     setMobiledropdownwhatwhere(!mobiledropdownwhatwhere);
+  };
+  //mobile wipes
+  const mobilewipesfunction = () => {
+    setMobilewipes(!mobilewipes);
+  };
+  const mobilewipesalcoholfunction = () => {
+    setMobilewipesalcohol(!mobilewipesalcohol);
+  };
+  const mobilewipescleaningfunction = () => {
+    setMobilewipescleaning(!mobilewipescleaning);
   };
   //desktop
   const handleMouseEnter = (subMenuIndex) => {
@@ -123,7 +138,7 @@ const Header = () => {
           </div>
         </div>
         {/* Start  mobile devices */}
-        <div className="h-auto  ">
+        <div className="h-auto   ">
           <div className="flex  sm:flex items-center justify-between md:hidden lg:hidden xl:hidden px-5 ">
             <div className=" flex items-center">
               {mobiledropdown ? (
@@ -162,15 +177,15 @@ const Header = () => {
             </div>
           </div>
           {mobiledropdown && (
-            <div className="">
+            <div className="bg-gray-200">
               <ul className="w-full ">
                 <div className=" p-3 pl-4">
-                  <p className="flex items-center ">
+                  <p
+                    className="flex items-center justify-between "
+                    onClick={mobiledropdownwhatwherefunction}
+                  >
                     USES{" "}
-                    <span
-                      className="w-[90%]  flex justify-end "
-                      onClick={mobiledropdownwhatwherefunction}
-                    >
+                    <span className="  flex items-center ">
                       {" "}
                       {mobiledropdownwhatwhere ? (
                         <IoChevronUp size={20} />
@@ -182,12 +197,12 @@ const Header = () => {
                   {mobiledropdownwhatwhere && (
                     <>
                       <div className="p-3 pl-4 ">
-                        <p className="flex items-center   ">
+                        <p
+                          className="flex items-center justify-between   "
+                          onClick={mobilewhatusesfunction}
+                        >
                           -WHAT{" "}
-                          <span
-                            className="w-[90%]  flex justify-end "
-                            onClick={mobilewhatusesfunction}
-                          >
+                          <span className="  flex items-center ">
                             {" "}
                             {mobilewhatuses ? (
                               <IoChevronUp size={20} />
@@ -217,12 +232,12 @@ const Header = () => {
                         )}
                       </div>
                       <div className=" p-3 pl-4  ">
-                        <p className="flex items-center   ">
+                        <p
+                          className="flex items-center justify-between   "
+                          onClick={mobileusesfunction}
+                        >
                           -WHERE{" "}
-                          <span
-                            className="w-[90%]  flex justify-end "
-                            onClick={mobileusesfunction}
-                          >
+                          <span className="  flex items-center ">
                             {" "}
                             {mobileuses ? (
                               <IoChevronUp size={20} />
@@ -261,23 +276,89 @@ const Header = () => {
                   )}
                 </div>
 
-                <li className="hover:bg-gray-400 p-3 pl-4">PRODUCTS</li>
-                <li className="hover:bg-gray-400 p-3 pl-4">
-                  70% ISOPROPYL ALCOHOL FORMULA
-                </li>
-                <li className="hover:bg-gray-400 p-3 pl-4">XL WIPES</li>
-                <li className="hover:bg-gray-400 p-3 pl-4">LARGE WIPES</li>
-                <li className="hover:bg-gray-400 p-3 pl-4">
-                  PREMIUM SCREEN CLEANING FORMULA
-                </li>
-                <li className="hover:bg-gray-400 p-3 pl-4">XL WIPES</li>
-                <li className="hover:bg-gray-400 p-3 pl-4">LARGE WIPES</li>
-                <li className="hover:bg-gray-400 p-3 pl-4">SMALL WIPES</li>
-                <li className="hover:bg-gray-400 p-3 pl-4">DISCOVER</li>
-                <li className="hover:bg-gray-400 p-3 pl-4">OUR STORY</li>
-                <li className="hover:bg-gray-400 p-3 pl-4">FAQ</li>
-                <li className="hover:bg-gray-400 p-3 pl-4">OUR BLOG</li>
-                <li className="hover:bg-gray-400 p-3 pl-4">CONTACT US</li>
+                <div className=" p-3 pl-4">
+                  <p
+                    className="flex items-center justify-between"
+                    onClick={mobilewipesfunction}
+                  >
+                    PRODUCTS{" "}
+                    <span className=" flex items-center ">
+                      {" "}
+                      {mobileuses ? (
+                        <IoChevronUp size={20} />
+                      ) : (
+                        <IoChevronDown size={20} />
+                      )}{" "}
+                    </span>
+                  </p>
+                  {mobilewipes && (
+                    <>
+                      <div className=" p-3 pl-4">
+                        <p
+                          className="flex items-center justify-between"
+                          onClick={mobilewipesalcoholfunction}
+                        >
+                          70% ISOPROPYL ALCOHOL FORMULA{" "}
+                          <span className="  flex items-center ">
+                            {mobilewipesalcohol ? (
+                              <IoChevronUp size={20} />
+                            ) : (
+                              <IoChevronDown size={20} />
+                            )}{" "}
+                          </span>
+                        </p>
+                        {mobilewipesalcohol && (
+                          <>
+                            <ul>
+                              <li className="hover:bg-gray-400 p-3 pl-4">
+                                XL WIPES
+                              </li>
+                              <li className="hover:bg-gray-400 p-3 pl-4">
+                                LARGE WIPES
+                              </li>
+                            </ul>
+                          </>
+                        )}
+                      </div>
+
+                      <div className=" p-3 pl-4">
+                        <p
+                          className="flex items-center justify-between"
+                          onClick={mobilewipescleaningfunction}
+                        >
+                          PREMIUM SCREEN CLEANING FORMULA
+                          <span className="  flex items-center">
+                            {mobilewipescleaning ? (
+                              <IoChevronUp size={20} />
+                            ) : (
+                              <IoChevronDown size={20} />
+                            )}{" "}
+                          </span>
+                        </p>
+                        {mobilewipescleaning && (
+                          <>
+                            <ul>
+                              <li className="hover:bg-gray-400 p-3 pl-4">
+                                XL WIPES
+                              </li>
+                              <li className="hover:bg-gray-400 p-3 pl-4">
+                                LARGE WIPES
+                              </li>
+                              <li className="hover:bg-gray-400 p-3 pl-4">
+                                SMALL WIPES
+                              </li>
+                            </ul>
+                          </>
+                        )}
+                      </div>
+                    </>
+                  )}
+                  <div className=" py-3 ">DISCOVER</div>
+                  <div className=" py-3 ">OUR STORY</div>
+                  <div className=" py-3 ">FAQ</div>
+                  <div className=" py-3 ">OUR BLOG</div>
+                  <div className=" py-3 ">CONTACT US</div>
+                </div>
               </ul>
             </div>
           )}
