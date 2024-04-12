@@ -179,9 +179,12 @@ const Header = () => {
           </div>
           {mobiledropdown && (
             <div
-              className={`bg-gray-100 sm:block block md:hidden lg:hidden xl:hidden dropdown-menu ${
+              className={`bg-gray-100 font-semibold sm:block block md:hidden lg:hidden xl:hidden dropdown-menu ${
                 mobiledropdown ? "show" : ""
               }`}
+              style={{
+                animation: `${mobiledropdown ? "fadeIn 0.5s ease-in-out" : ""}`,
+              }}
             >
               <ul className="w-full ">
                 <div className=" p-3 pl-4 ">
