@@ -13,6 +13,7 @@ import { IoMdArrowDropright } from "react-icons/io";
 import { IoChevronUp } from "react-icons/io5";
 import { FaBars } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
+import "../Css/Header.css";
 const Header = () => {
   const [show, setShow] = useState(false);
   const [uses, setUses] = useState(false);
@@ -177,9 +178,13 @@ const Header = () => {
             </div>
           </div>
           {mobiledropdown && (
-            <div className="bg-gray-200">
+            <div
+              className={`bg-gray-100 sm:block block md:hidden lg:hidden xl:hidden dropdown-menu ${
+                mobiledropdown ? "show" : ""
+              }`}
+            >
               <ul className="w-full ">
-                <div className=" p-3 pl-4">
+                <div className=" p-3 pl-4 ">
                   <p
                     className="flex items-center justify-between "
                     onClick={mobiledropdownwhatwherefunction}
@@ -196,7 +201,7 @@ const Header = () => {
                   </p>
                   {mobiledropdownwhatwhere && (
                     <>
-                      <div className="p-3 pl-4 ">
+                      <div className="p-3 pl-4  ">
                         <p
                           className="flex items-center justify-between   "
                           onClick={mobilewhatusesfunction}
