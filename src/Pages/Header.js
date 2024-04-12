@@ -119,7 +119,7 @@ const Header = () => {
               SIGN UP FOR OUR NEWSLETTER & RECEIVE 10% OFF YOUR FIRST ORDER
             </div>
 
-            <div className="text-white  font-bold flex items-center gap-3 pr-10 text-sm hidden   sm:hidden md:block lg:block xl:block">
+            <div className="text-white  font-bold  items-center gap-3 pr-10 text-sm hidden   sm:hidden md:flex lg:flex xl:flex">
               CONNECT WITH US :{" "}
               <a
                 href="https://www.facebook.com/iclothcleaningwipes"
@@ -179,7 +179,7 @@ const Header = () => {
           </div>
           {mobiledropdown && (
             <div
-              className={`bg-gray-100 font-semibold sm:block block md:hidden lg:hidden xl:hidden dropdown-menu ${
+              className={`bg-gray-100 font-light sm:block block md:hidden lg:hidden xl:hidden dropdown-menu ${
                 mobiledropdown ? "show" : ""
               }`}
               style={{
@@ -187,7 +187,7 @@ const Header = () => {
               }}
             >
               <ul className="w-full ">
-                <div className=" p-3 pl-4 ">
+                <div className=" p-3 pl-4 border ">
                   <p
                     className="flex items-center justify-between "
                     onClick={mobiledropdownwhatwherefunction}
@@ -284,7 +284,7 @@ const Header = () => {
                   )}
                 </div>
 
-                <div className=" p-3 pl-4">
+                <div className=" p-3 pl-4 ">
                   <p
                     className="flex items-center justify-between"
                     onClick={mobilewipesfunction}
