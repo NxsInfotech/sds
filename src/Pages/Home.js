@@ -3,7 +3,7 @@ import "../Css/Home.css";
 const Home = () => {
   const [data, setData] = useState({
     "your-name": "",
-    "number-566": "",
+    // "number-566": "",
     "your-email": "",
     "your-company": "",
     "your-message": "",
@@ -14,20 +14,49 @@ const Home = () => {
     const { name, value } = e.target;
     setData((prevdata) => ({ ...prevdata, [name]: value }));
   };
-  const handlesubmit = (e) => {
+
+  //function calling
+
+  const handlesubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
 
-    setData({
-      "your-name": "",
-      "number-566": "",
-      "your-email": "",
-      "your-company": "",
-      "your-message": "",
-      tostify: true,
-    });
+    // Create FormData object from the form
+    const formData = new FormData(e.target);
+
+    // Append unit tag to form data
+    formData.append("_unit_tag", "replace_with_valid_unit_tag");
+
+    const reqoptions = {
+      method: "POST",
+      body: formData,
+    };
+
+    try {
+      const req = await fetch(
+        "https://nxsinfotech.com/server/wp-json/contact-form-7/v1/contact-forms/6/feedback",
+        reqoptions
+      );
+
+      if (req.ok) {
+        const response = await req.json();
+        console.log("response", response);
+        console.log("Form submitted successfully!");
+        // Clear form values after successful submission
+        setData({
+          "your-name": "",
+          // "number-566": "",
+          "your-email": "",
+          "your-subject": "",
+          "your-message": "",
+        });
+      } else {
+        console.log("Form submission failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      console.log("An error occurred. Please try again later.");
+    }
   };
-
   return (
     <main className="bg-[#059ad4] h-auto w-full ">
       <section className="w-[70%] max-w-[1605px] mx-auto ">
@@ -57,7 +86,7 @@ const Home = () => {
               required
             ></input>
           </div>
-          <div className="pt-4">
+          {/* <div className="pt-4">
             <label
               className="block text-white text-sm font-bold mb-2 "
               htmlFor="phone"
@@ -73,7 +102,7 @@ const Home = () => {
               onChange={handlechange}
               required
             ></input>
-          </div>
+          </div> */}
           <div className="pt-4">
             <label
               className="block text-white text-sm font-bold mb-2 "
@@ -100,8 +129,8 @@ const Home = () => {
             </label>
             <input
               className="shadow appearance-none bg-transparent border text-white  w-full py-2  px-3   leading-7 focus:outline-none focus:shadow-outline "
-              id="your-company"
-              name="your-company"
+              id="your-subject"
+              name="your-subject"
               type="text"
               placeholder=""
               onChange={handlechange}
