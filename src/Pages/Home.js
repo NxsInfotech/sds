@@ -1,52 +1,40 @@
 import React, { useState } from "react";
 import "../Css/Home.css";
 const Home = () => {
-  const [data, setData] = useState({
+  const [formData, setFormData] = useState({
     "your-name": "",
-    // "number-566": "",
     "your-email": "",
-    "your-company": "",
+    "your-subject": "",
+    "number-783": "",
     "your-message": "",
-    tostify: false,
   });
 
-  const handlechange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setData((prevdata) => ({ ...prevdata, [name]: value }));
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  //function calling
-
-  const handlesubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Create FormData object from the form
-    const formData = new FormData(e.target);
-
-    // Append unit tag to form data
-    formData.append("_unit_tag", "replace_with_valid_unit_tag");
-
-    const reqoptions = {
+    const reqOptions = {
       method: "POST",
-      body: formData,
+      body: new FormData(e.target),
     };
 
     try {
-      const req = await fetch(
-        "https://nxsinfotech.com/server/wp-json/contact-form-7/v1/contact-forms/6/feedback",
-        reqoptions
+      const response = await fetch(
+        "https://server.icloth.io/wp-json/contact-form-7/v1/contact-forms/18/feedback",
+        reqOptions
       );
 
-      if (req.ok) {
-        const response = await req.json();
-        console.log("response", response);
+      if (response.ok) {
         console.log("Form submitted successfully!");
-        // Clear form values after successful submission
-        setData({
+        setFormData({
           "your-name": "",
-          // "number-566": "",
           "your-email": "",
           "your-subject": "",
+          "number-783": "",
           "your-message": "",
         });
       } else {
@@ -68,7 +56,7 @@ const Home = () => {
           </p>
         </div>
 
-        <form className="pb-28 " onSubmit={handlesubmit}>
+        <form className="pb-28 " onSubmit={handleSubmit}>
           <div>
             <label
               className="block text-white text-sm font-bold mb-2 "
@@ -80,13 +68,14 @@ const Home = () => {
               className="shadow  appearance-none bg-transparent border text-white  w-full py-2  px-3   leading-7 focus:outline-none focus:shadow-outline "
               id="your-name"
               name="your-name"
+              value={formData["your-name"]}
               type="text"
               placeholder=""
-              onChange={handlechange}
+              onChange={handleChange}
               required
             ></input>
           </div>
-          {/* <div className="pt-4">
+          <div className="pt-4">
             <label
               className="block text-white text-sm font-bold mb-2 "
               htmlFor="phone"
@@ -95,14 +84,15 @@ const Home = () => {
             </label>
             <input
               className="shadow appearance-none bg-transparent border text-white  w-full py-2  px-3   leading-7 focus:outline-none focus:shadow-outline "
-              id="number-566"
-              name="number-566"
+              id="number-783"
+              name="number-783"
+              value={formData["number-783"]}
               type="number"
               placeholder=""
-              onChange={handlechange}
+              onChange={handleChange}
               required
             ></input>
-          </div> */}
+          </div>
           <div className="pt-4">
             <label
               className="block text-white text-sm font-bold mb-2 "
@@ -114,9 +104,10 @@ const Home = () => {
               className="shadow appearance-none bg-transparent border text-white  w-full py-2  px-3   leading-7 focus:outline-none focus:shadow-outline "
               id="your-email"
               name="your-email"
+              value={formData["your-email"]}
               type="email"
               placeholder=""
-              onChange={handlechange}
+              onChange={handleChange}
               required
             ></input>
           </div>
@@ -131,9 +122,10 @@ const Home = () => {
               className="shadow appearance-none bg-transparent border text-white  w-full py-2  px-3   leading-7 focus:outline-none focus:shadow-outline "
               id="your-subject"
               name="your-subject"
+              value={formData["your-subject"]}
               type="text"
               placeholder=""
-              onChange={handlechange}
+              onChange={handleChange}
               required
             ></input>
           </div>
@@ -148,7 +140,8 @@ const Home = () => {
               className="shadow appearance-none bg-transparent border text-white  w-full py-2  px-3   leading-7 focus:outline-none focus:shadow-outline "
               rows="4"
               name="your-message"
-              onChange={handlechange}
+              value={formData["your-message"]}
+              onChange={handleChange}
               required
             ></textarea>
           </div>
@@ -162,7 +155,7 @@ const Home = () => {
           </div>
         </form>
       </section>
-      {data.tostify && (
+      {formData.tostify && (
         <div className="notification">
           <div className="notification__body">
             <svg
